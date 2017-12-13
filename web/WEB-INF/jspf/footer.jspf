@@ -1,0 +1,4 @@
+<%@ page pageEncoding="UTF-8" %>
+<footer class="footer fixed-bottom">
+    <p class="text-center">Desenvolvido pelos alunos Bryan, Joao, Saulo e Vitoria - POO, 4° Ciclo - ADS. &copy; 2017</p>
+</footer>
