@@ -25,9 +25,8 @@
                 u.setTelefone(telefone);
             u.InsertCadastro(cpf ,name,data, email, senha, nacionalidade, telefone, genero);
             if(u==null){
-                %> <%="nada" %><%
                 errorMessage = "Login e/ou senha não encontrados";
-            }else{%><%="merda"%><%
+            }else{
                 u.getName();
                 session.setAttribute("me.id", u.getCpf());
                 session.setAttribute("me.name", u.getName());
