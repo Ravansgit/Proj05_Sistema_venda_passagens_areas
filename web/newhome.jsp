@@ -1,5 +1,4 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="com.domain.web.Price"%>
 <%@page import="com.domain.web.User"%>
 <!DOCTYPE html>
 <%
@@ -10,13 +9,15 @@
         try{
             User u = User.getUser(login, pass);
             if(u==null){
+                %> <%="nada" %><%
                 loginErrorMessage = "Login e/ou senha não encontrados";
-            }else{
-                session.setAttribute("me.cpf", u.getId());
+            }else{%><%="merda"%><%
+                session.setAttribute("me.id", u.getId());
                 session.setAttribute("me.name", u.getName());
                 session.setAttribute("me.login", u.getLogin());
                 session.setAttribute("me.passwordHash", u.getPasswordHash());
-                response.sendRedirect(request.getContextPath()+"/cadastro.jsp");
+                //response.sendRedirect(request.getContextPath()+"/compra_passagens.jsp");
+
             }
         }catch(Exception ex){
             loginErrorMessage = ex.getMessage();
@@ -38,13 +39,13 @@
                 <%}%>
                 <h2 class="text-center"> BEM-VINDO(A)!</h2><br>
                 
-                <form method="post" class="col-md-6">
+                <form method="get" class="col-md-6">
                     <h3>FAÇA O SEU LOGIN: </h3>
                     <label>Login:</label><br/>
                     <input type="email" name="login" class="form-control"><br/>
                     <label>Senha:</label><br/>
                     <input type="password" name="pass" class="form-control"/><br/>
-                    <input type="submit" name="do-login" value="ENTRAR" class="btn align-middle btn-outline-light" style=" margin-left: 15%;"/> ou<a href="cadastro.jsp"style="font-size: 0.7em;"><button class="btn btn-login">Cadastre-se</button></a>
+                    <input type="submit" name="do-login" value="ENTRAR" class="btn align-middle btn-outline-light" style=" margin-left: 15%;"/> ou<a href="cadastro.jsp" style="font-size: 0.7em;"><button class="btn btn-login">Cadastre-se</button></a>
                 </form>
         </main>
         <%@include file="WEB-INF/jspf/footer.jspf" %>

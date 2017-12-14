@@ -59,23 +59,24 @@ public class DatabaseCreatorListener implements ServletContextListener {
     private void createUsersTable(Statement s) {
         try {
             s.execute("CREATE TABLE users(\n"
-                    + "    id INTEGER NOT NULL GENERATED ALWAYS \n" 
-                    + "        AS IDENTITY (START WITH 1, INCREMENT BY 1)\n"
+                    + "    CPF INTEGER not null\n"
                     + "    , name varchar(75) not null\n"
-                    + "    , email varchar(50)  not null\n"
+                    + "    , login varchar(50)  not null\n"
                     + "    , nacionalidade varchar(45) not null\n"
                     + "    , genero varchar(11) not null\n" 
-                    + "    , login varchar(50)  not null\n" 
+                    + "    , telefone integer not null\n"
+                    + "    , dt_nascimento varchar(50)  not null\n" 
                     + "    , pass_hash varchar(200) not null\n" +
                     ")");
             System.out.println("Criada tabela users.");
             s.execute("INSERT INTO users VALUES("
-                    + "default"
+                    + "11111111111"
                     + ", 'Administrador do Sistema'"
                     + ", 'admin@gmail.com'"
                     + ", 'Brasileiro'"
                     + ", 'Masculino'"
-                    +", 'admin@gmail.com'"
+                    + ", '1112345678'"                    
+                    +", '02/02/2017'"
                     + ", '"+"1234".hashCode()+"'"
                     + ")");
             System.out.println("Usuário admin criado com senha 1234");

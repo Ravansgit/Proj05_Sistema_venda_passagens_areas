@@ -7,15 +7,15 @@
             session.removeAttribute("me.name");
             session.removeAttribute("me.login");
             session.removeAttribute("me.passwordHash");
-            response.sendRedirect(request.getContextPath()+"/home.jsp");
+            response.sendRedirect(request.getContextPath()+"/newhome.jsp");
         }
     %>
         <nav class="navbar  fixed-top" >
             <h1 class="navbar-header">
-                <a href="home.jsp"class="navbar-brand" style="color: #fff; font-size: 0.85em !important;">VENDA DE PASSAGENS AEREAS ONLINE</a>
+                <a href="home.jsp" class="navbar-brand" style="color: #fff; font-size: 0.85em !important;">VENDA DE PASSAGENS AEREAS ONLINE</a>
             </h1> 
             <ul class="nav nav-default">
-                <li class="nav-item"><a href="compra_passagens.jsp" class="nav-link"style="color: #fff;">PASSAGEM </a></li>
+                <li class="nav-item"><a href="compra_passagens.jsp" class="nav-link" style="color: #fff;">PASSAGEM </a></li>
                 <li class="nav-item"><a href="pacotes.jsp" class="nav-link" style="color: #fff;">PACOTES</a></li>
                 <%if(session.getAttribute("me.login")!=null){%> 
                 <li class="nav-item"><span class="nav-link">BEM-VINDO(A), <%=session.getAttribute("me.name")%>!</span></li>

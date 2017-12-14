@@ -1,5 +1,47 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.domain.web.Cadastro"%>
 <!DOCTYPE html>
+<%
+    String errorMessage = null;
+    if(request.getParameter("enviar")!= null){
+        String name = request.getParameter("nome");
+        String data = request.getParameter("data");
+        String cpf = request.getParameter("cpf");
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        int telefone = Integer.parseInt(request.getParameter("telefone"));
+        String nacionalidade = request.getParameter("nacionalidade");
+        String genero = request.getParameter("genero");
+        
+        try{
+            Cadastro u = new Cadastro(cpf ,name,data, email, senha, nacionalidade, telefone, genero);
+                u.setCpf(cpf);
+                u.setData(data);
+                u.setEmail(email);
+                u.setGenero(genero);
+                u.setNacionalidade(nacionalidade);
+                u.setName(name);
+                u.setSenha(senha);
+                u.setTelefone(telefone);
+            u.InsertCadastro(cpf ,name,data, email, senha, nacionalidade, telefone, genero);
+            if(u==null){
+                %> <%="nada" %><%
+                errorMessage = "Login e/ou senha não encontrados";
+            }else{%><%="merda"%><%
+                u.getName();
+                session.setAttribute("me.id", u.getCpf());
+                session.setAttribute("me.name", u.getName());
+                session.setAttribute("me.login", u.getEmail());
+                session.setAttribute("me.passwordHash", u.getSenha());
+                //response.sendRedirect(request.getContextPath()+"/compra_passagens.jsp");
+
+            }
+        }catch(Exception ex){
+            errorMessage = ex.getMessage();
+        }
+    }
+%>
+
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,12 +53,12 @@
         <%@include file = "WEB-INF/jspf/header.jspf"%> 
         <main class="container" style="margin-top: 10%;">
             <h2>CADASTRE-SE</h2>
-            <form method="post" class="form-horizontal">
+            <form method="get" class="form-horizontal">
                 <label class="col-md-7">Nome Completo:
-                    <input type="text" name="nome_completo"  class="form-control"/>
+                    <input type="text" name="nome"  class="form-control" value=""/>
                 </label>
                 <label  class="col-md-4">Data de Nascimento: 
-                    <input type="date" name="data_nascimento"  class="form-control "/>
+                    <input type="date" name="data"  class="form-control "/>
                 </label>
                 <br><br>
                <label class="col-md-3"> CPF:
@@ -30,10 +72,10 @@
                 </label>
                 <br><br>
                 <label class="col-md-3">Telefone:
-                    <input type="number" name="nacionalidade" class="form-control"/>
+                    <input type="number" name="telefone" class="form-control"/>
                 </label>
                 <label class="col-md-5">Nacionalidade:
-                    <select name="paises" id="paises" class="form-control">
+                    <select name="nacionalidade" id="paises" class="form-control">
                         <option value="Brasil" selected="selected">Brasil</option>
                         <option value="Afeganistão">Afeganistão</option>
                         <option value="África do Sul">África do Sul</option>

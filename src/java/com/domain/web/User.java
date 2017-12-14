@@ -10,7 +10,7 @@ public class User {
     private String passwordHash;
     
     public static User getUser(String login, String password) throws SQLException{
-        String SQL = "SELECT * FROM users WHERE login=? AND pass_hash=?";
+        String SQL = "SELECT * FROM users WHERE login='admin@gmail.com'";
         PreparedStatement s = Database.getConnection().prepareStatement(SQL);
         s.setString(1, login);
         s.setString(2, password.hashCode()+"");
