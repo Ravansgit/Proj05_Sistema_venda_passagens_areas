@@ -9,14 +9,14 @@
         try{
             User u = User.getUser(login, pass);
             if(u==null){
-                %> <%="nada" %><%
+                %><%="nada" %><%
                 loginErrorMessage = "Login e/ou senha não encontrados";
-            }else{%><%="merda"%><%
+            }else{%><%="entao"%><%
                 session.setAttribute("me.id", u.getId());
                 session.setAttribute("me.name", u.getName());
                 session.setAttribute("me.login", u.getLogin());
                 session.setAttribute("me.passwordHash", u.getPasswordHash());
-                //response.sendRedirect(request.getContextPath()+"/compra_passagens.jsp");
+                
 
             }
         }catch(Exception ex){
